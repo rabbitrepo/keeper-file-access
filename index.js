@@ -6,7 +6,11 @@ const app = express();
 
 // Initialize S3 with environment variables
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION, // Use region from .env
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  }
 });
 
 // Middleware to parse JSON requests
